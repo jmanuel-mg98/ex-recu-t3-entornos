@@ -1,4 +1,4 @@
-package fracciones;
+package examen;
 
 public class Fraccion {
 	private int num;
@@ -13,14 +13,14 @@ public class Fraccion {
 		
 	}
 	
-	//Constructor con parámetros
+	//Constructor con parï¿½metros
 	public Fraccion (int num,int den) {
 		//debo evitar crear fracciones con 0 en el divisor
 		this.num=num;
 		if(den==0)
 			den=1;
 		this.den=den;
-		//devuelvo la fracción simplificada
+		//devuelvo la fracciï¿½n simplificada
 		simplificar();
 	}
 	
@@ -43,8 +43,8 @@ public class Fraccion {
 		return den;
 	}
 	
-	 //Cálculo del máximo común divisor por el algoritmo de Euclides                                               
-    private int mcd() {
+	 //Cï¿½lculo del mï¿½ximo comï¿½n divisor por el algoritmo de Euclides                                               
+    private int maxComunDivisor() {
         int maximo = Math.max(Math.abs(num), Math.abs(den));
         int minimo = Math.min(Math.abs(num), Math.abs(den));
         int resto = maximo % minimo;
@@ -58,14 +58,14 @@ public class Fraccion {
         return minimo;
     }
     
-    //método para simplificar fracciones
+    //mï¿½todo para simplificar fracciones
     public void simplificar() {
-    	int n=mcd();
+    	int n=maxComunDivisor();
     	num=num/n;
     	den=den/n;
     }
     
-    //Método toString
+    //Mï¿½todo toString
     
     public String toString() {
     	String mensaje = num+ "/"+den;
@@ -78,7 +78,9 @@ public class Fraccion {
     
     public Fraccion sumar(Fraccion f) {
     	Fraccion aux= new Fraccion();
-    	aux.num=num*f.den+den*f.num;
+    	int cruce1 = num*f.den;
+		int cruce2 = den*f.num;
+		aux.num=cruce1+cruce2;
     	aux.den=den*f.den;
     	aux.simplificar();
     	return aux;
@@ -89,7 +91,9 @@ public class Fraccion {
     
     public Fraccion restar(Fraccion f) {
     	Fraccion aux=new Fraccion();
-    	aux.num=num*f.den-den*f.num;
+    	int cruce1 = num*f.den;
+		int cruce2 = den*f.num;
+		aux.num=cruce1-cruce2;
     	aux.den=den*f.den;
     	aux.simplificar();
     	return aux;
